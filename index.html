@@ -28,7 +28,7 @@
             </nav>
         </div>
     </header> -->
-
+    <!-- 
     <h1>Pysch Game</h1>
     <br>
     <p>Guess what letter I'm thinking of.</p>
@@ -36,10 +36,9 @@
     <p id="losses"></p>
     <p id="guessesLeft"></p>
     <p id="guessesSoFar"></p>
-    </p>
+    </p> -->
 
     <script>
-        
         var wins = 0;
         var losses = 0;
         var YourGuesses = 9;
@@ -48,7 +47,13 @@
             "s", "t", "u", "v", "w", "x", "y", "z",
         ];
 
-        
+        var computerGuess =
+
+            computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+        var choices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+            "t", "u", "v", "w", "x", "y", "z"
+        ];
     </script>
 
 
