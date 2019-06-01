@@ -28,17 +28,21 @@
             </nav>
         </div>
     </header>
-    
+
+    <!-- The only HTML that really matters for my page -->
+
     <h1>Pysch Game</h1>
     <br>
     <p>Guess what letter I'm thinking of.</p>
     <p id="wins"></p>
     <p id="losses"></p>
     <p id="guessesLeft"></p>
-    <p id="guessesSoFar"></p>
+    <p id="choicesSoFar"></p>
     </p>
 
     <script>
+        // Variables
+
         var wins = 0;
         var losses = 0;
         var yourGuesses = 10;
@@ -47,37 +51,62 @@
             "s", "t", "u", "v", "w", "x", "y", "z",
         ];
 
-        var computerGuess =
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-            computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
-        // var choices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
-        //     "t", "u", "v", "w", "x", "y", "z"
-        // ];
-// ----------------------------
+        // ----------------------------
         // functions
-// ----------------------------
-        
-        document.onkeyup = function (event){
+        // ----------------------------
+
+        // function to link to my html
+
+        document.getElementById("wins").innerHTML = "Wins: " + wins
+        document.getElementById("losses").innerHTML = "Losses: " + losses
+        document.getElementById("guessesLeft").innerHTML = "Guesses you have left: " + yourGuesses
+        document.getElementById("choicesSoFar").innerHTML = "Choices you have made: " + guessChoices
+
+        // function for key press
+        // The function below calls javascript to work through the word document, .onkeyup allows the cpu to let you know that you are entering a key, and that it is 
+        // assigned to a function that is waiting for the event to happen. This function translates to IF the user presses a key, and it is the key the cpu chose,
+        // it will give you 1 win, and reset the code. When the code gets down to the Else statement it will subtract from the choices you have available until you win or
+        // IF you hit 0 points, then you get an alert that lets you know that you lost. The game will then reset and keep score.
+
+        document.onkeyup = function (event) {
+            // Puts the answer for the computer in the console
             console.log(event.key)
+            // If you put in a character key it will register here
             if (event.key == computerGuess) {
-                alert("You win") 
-                wins ++
-                break
-            } 
-            else {
-                yourGuesses --
+                // Sends an alert at the top of the screen to letting you know that you
+                alert("You win")
+                // Gives a win
+                wins++
+                // resets the choices made back to zero
+                guessChoices = []
+                // resets the attempts available back to 10
+                yourGuesses = 10;
+
+            } else {
+                yourGuesses--
+                guessChoices.push(event.key)
+                console.log(guessChoices)
             }
             if (yourGuesses == 0) {
+                // Sends an alert at the top of the screen to letting you know that you lose
                 alert("You lose")
-                losses ++
-                break
+                // Gives a loss
+                losses++
+                // resets the choices made back to zero
+                guessChoices = []
+                // resets the attempts available back to 10
+                yourGuesses = 10;
             }
 
-            
-        }
-        document.write(computerGuess)
+            // copy and pasted function to change my html
+            document.getElementById("wins").innerHTML = "Wins: " + wins
+            document.getElementById("losses").innerHTML = "Losses: " + losses
+            document.getElementById("guessesLeft").innerHTML = "Guesses you have left: " + yourGuesses
+            document.getElementById("choicesSoFar").innerHTML = "Choices you have made: " + guessChoices
 
+        }
     </script>
 
 
